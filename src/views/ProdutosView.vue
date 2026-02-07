@@ -6,8 +6,8 @@ import { Package } from 'lucide-vue-next'
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
       <Package class="w-6 h-6" />
-      Produtos
+      {{ $t('views.products.title') }}
     </h1>
-    <p class="mt-1 text-gray-500">Gerencie o catálogo de produtos</p>
+    <p class="mt-1 text-gray-500">{{ $t('views.products.description') }}</p>
   </div>
 </template>

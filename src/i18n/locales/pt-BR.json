@@ -1,0 +1,80 @@
+{
+  "app": {
+    "title": "ERP System"
+  },
+  "auth": {
+    "title": "ERP System",
+    "subtitle": "Entre com suas credenciais para acessar o sistema",
+    "username": "Usuário",
+    "usernamePlaceholder": "Seu usuário",
+    "password": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "submit": "Entrar",
+    "submitting": "Entrando...",
+    "invalidCredentials": "Usuário ou senha inválidos"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "sales": "Vendas",
+    "products": "Produtos",
+    "clients": "Clientes",
+    "suppliers": "Fornecedores",
+    "labels": "Etiquetas",
+    "accountsReceivable": "Contas a Receber",
+    "accountsPayable": "Contas a Pagar",
+    "reports": "Relatórios",
+    "users": "Usuários",
+    "logout": "Sair",
+    "language": "Idioma"
+  },
+  "views": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Visão geral do sistema"
+    },
+    "sales": {
+      "title": "Vendas",
+      "description": "Gerencie as vendas do sistema"
+    },
+    "products": {
+      "title": "Produtos",
+      "description": "Gerencie o catálogo de produtos"
+    },
+    "clients": {
+      "title": "Clientes",
+      "description": "Gerencie os clientes"
+    },
+    "suppliers": {
+      "title": "Fornecedores",
+      "description": "Gerencie os fornecedores"
+    },
+    "labels": {
+      "title": "Etiquetas",
+      "description": "Gerencie as etiquetas de produtos"
+    },
+    "accountsReceivable": {
+      "title": "Contas a Receber",
+      "description": "Gerencie as contas a receber"
+    },
+    "accountsPayable": {
+      "title": "Contas a Pagar",
+      "description": "Gerencie as contas a pagar"
+    },
+    "reports": {
+      "title": "Relatórios",
+      "description": "Visualize relatórios do sistema"
+    },
+    "users": {
+      "title": "Usuários e Permissões",
+      "description": "Gerencie usuários e papéis de acesso"
+    }
+  },
+  "forbidden": {
+    "title": "Acesso Negado",
+    "message": "Você não tem permissão para acessar esta página.",
+    "backToDashboard": "Voltar ao Dashboard"
+  },
+  "errors": {
+    "unknown": "Erro desconhecido"
+  }
+}

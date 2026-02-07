@@ -1,0 +1,80 @@
+{
+  "app": {
+    "title": "ERP System"
+  },
+  "auth": {
+    "title": "ERP System",
+    "subtitle": "Enter your credentials to access the system",
+    "username": "Username",
+    "usernamePlaceholder": "Your username",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "invalidCredentials": "Invalid username or password"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "sales": "Sales",
+    "products": "Products",
+    "clients": "Clients",
+    "suppliers": "Suppliers",
+    "labels": "Labels",
+    "accountsReceivable": "Accounts Receivable",
+    "accountsPayable": "Accounts Payable",
+    "reports": "Reports",
+    "users": "Users",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "views": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "System overview"
+    },
+    "sales": {
+      "title": "Sales",
+      "description": "Manage system sales"
+    },
+    "products": {
+      "title": "Products",
+      "description": "Manage the product catalog"
+    },
+    "clients": {
+      "title": "Clients",
+      "description": "Manage clients"
+    },
+    "suppliers": {
+      "title": "Suppliers",
+      "description": "Manage suppliers"
+    },
+    "labels": {
+      "title": "Labels",
+      "description": "Manage product labels"
+    },
+    "accountsReceivable": {
+      "title": "Accounts Receivable",
+      "description": "Manage accounts receivable"
+    },
+    "accountsPayable": {
+      "title": "Accounts Payable",
+      "description": "Manage accounts payable"
+    },
+    "reports": {
+      "title": "Reports",
+      "description": "View system reports"
+    },
+    "users": {
+      "title": "Users & Permissions",
+      "description": "Manage users and access roles"
+    }
+  },
+  "forbidden": {
+    "title": "Access Denied",
+    "message": "You do not have permission to access this page.",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "errors": {
+    "unknown": "Unknown error"
+  }
+}

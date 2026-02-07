@@ -6,8 +6,8 @@ import { DollarSign } from 'lucide-vue-next'
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
       <DollarSign class="w-6 h-6" />
-      Contas a Receber
+      {{ $t('views.accountsReceivable.title') }}
     </h1>
-    <p class="mt-1 text-gray-500">Gerencie as contas a receber</p>
+    <p class="mt-1 text-gray-500">{{ $t('views.accountsReceivable.description') }}</p>
   </div>
 </template>

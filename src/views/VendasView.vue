@@ -6,8 +6,8 @@ import { ShoppingCart } from 'lucide-vue-next'
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
       <ShoppingCart class="w-6 h-6" />
-      Vendas
+      {{ $t('views.sales.title') }}
     </h1>
-    <p class="mt-1 text-gray-500">Gerencie as vendas do sistema</p>
+    <p class="mt-1 text-gray-500">{{ $t('views.sales.description') }}</p>
   </div>
 </template>
