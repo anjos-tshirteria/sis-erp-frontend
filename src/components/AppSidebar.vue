@@ -2,36 +2,59 @@
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
+import { useAuthStore } from '@/stores/auth'
+import type { Permission } from '@/types'
 import {
   LayoutDashboard,
   ShoppingCart,
   Package,
   Users,
   Truck,
-  Tag,
-  DollarSign,
-  CreditCard,
+  Tags,
+  ArrowDownCircle,
+  ArrowUpCircle,
   BarChart3,
   UserCircle,
   X,
   Menu,
+  LogOut,
 } from 'lucide-vue-next'
 
 const route = useRoute()
 const appStore = useAppStore()
+const authStore = useAuthStore()
 
-const menuItems = [
+const allMenuItems: Array<{
+  path: string
+  icon: typeof LayoutDashboard
+  label: string
+  permission?: Permission
+}> = [
   { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  { path: '/vendas', icon: ShoppingCart, label: 'Vendas' },
-  { path: '/produtos', icon: Package, label: 'Produtos' },
-  { path: '/clientes', icon: Users, label: 'Clientes' },
-  { path: '/fornecedores', icon: Truck, label: 'Fornecedores' },
-  { path: '/etiquetas', icon: Tag, label: 'Etiquetas' },
-  { path: '/contas-receber', icon: DollarSign, label: 'Contas a Receber' },
-  { path: '/contas-pagar', icon: CreditCard, label: 'Contas a Pagar' },
-  { path: '/relatorios', icon: BarChart3, label: 'Relatórios' },
-  { path: '/usuarios', icon: UserCircle, label: 'Usuários' },
+  { path: '/vendas', icon: ShoppingCart, label: 'Vendas', permission: 'VIEW_SALES' },
+  { path: '/produtos', icon: Package, label: 'Produtos', permission: 'MANAGE_PRODUCTS' },
+  { path: '/clientes', icon: Users, label: 'Clientes', permission: 'MANAGE_CLIENTS' },
+  { path: '/fornecedores', icon: Truck, label: 'Fornecedores', permission: 'MANAGE_SUPPLIERS' },
+  { path: '/etiquetas', icon: Tags, label: 'Etiquetas', permission: 'MANAGE_PRODUCTS' },
+  {
+    path: '/contas-receber',
+    icon: ArrowDownCircle,
+    label: 'Contas a Receber',
+    permission: 'ACCOUNTS_RECEIVABLE',
+  },
+  {
+    path: '/contas-pagar',
+    icon: ArrowUpCircle,
+    label: 'Contas a Pagar',
+    permission: 'ACCOUNTS_PAYABLE',
+  },
+  { path: '/relatorios', icon: BarChart3, label: 'Relatórios', permission: 'VIEW_REPORTS' },
+  { path: '/usuarios', icon: UserCircle, label: 'Usuários', permission: 'MANAGE_USERS' },
 ]
+
+const menuItems = computed(() =>
+  allMenuItems.filter((item) => !item.permission || authStore.hasPermission(item.permission)),
+)
 
 function isActive(path: string) {
   if (path === '/') return route.path === '/'
@@ -75,5 +98,25 @@ const sidebarOpen = computed(() => appStore.sidebarOpen)
         <span v-if="sidebarOpen">{{ item.label }}</span>
       </RouterLink>
     </nav>
+
+    <div class="border-t border-gray-200 p-4">
+      <div v-if="authStore.user" class="flex items-center gap-3">
+        <UserCircle class="w-8 h-8 text-gray-400 shrink-0" />
+        <div v-if="sidebarOpen" class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900 truncate">{{ authStore.user.name }}</p>
+          <p class="text-xs text-gray-500 truncate">{{ authStore.user.role.name }}</p>
+        </div>
+        <button
+          :class="[
+            'p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-500 hover:text-red-600',
+            !sidebarOpen && 'hidden md:block',
+          ]"
+          title="Sair"
+          @click="authStore.logout()"
+        >
+          <LogOut class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
   </aside>
 </template>
