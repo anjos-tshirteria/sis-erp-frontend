@@ -76,5 +76,65 @@
   },
   "errors": {
     "unknown": "Erro desconhecido"
+  },
+  "users": {
+    "sectionUsers": "Usuários",
+    "sectionRoles": "Papéis (Roles)",
+    "newUser": "Novo Usuário",
+    "newRole": "Novo Papel",
+    "editUser": "Editar Usuário",
+    "editRole": "Editar Papel",
+    "table": {
+      "id": "ID",
+      "name": "Nome",
+      "username": "Username",
+      "email": "Email",
+      "role": "Papel",
+      "status": "Status",
+      "actions": "Ações",
+      "description": "Descrição",
+      "permissions": "Permissões",
+      "edit": "Editar",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "permissionCount": "{count} permissões",
+      "noUsers": "Nenhum usuário encontrado",
+      "noRoles": "Nenhum papel encontrado"
+    },
+    "form": {
+      "fullName": "Nome Completo",
+      "fullNamePlaceholder": "Nome do usuário",
+      "username": "Username",
+      "usernamePlaceholder": "username",
+      "email": "Email",
+      "emailPlaceholder": "email{'@'}exemplo.com",
+      "password": "Senha",
+      "passwordPlaceholder": "******",
+      "role": "Papel",
+      "selectRole": "Selecione um papel",
+      "activeUser": "Usuário Ativo",
+      "roleName": "Nome do Papel",
+      "roleNamePlaceholder": "Ex: Vendedor, Gerente",
+      "roleDescription": "Descrição",
+      "roleDescriptionPlaceholder": "Descrição do papel...",
+      "permissions": "Permissões",
+      "cancel": "Cancelar",
+      "save": "Salvar Alterações",
+      "createUser": "Criar Usuário",
+      "createRole": "Criar Papel",
+      "saving": "Salvando..."
+    },
+    "permissions": {
+      "MANAGE_USERS": "Gerenciar Usuários",
+      "VIEW_REPORTS": "Visualizar Relatórios",
+      "CREATE_SALE": "Criar Vendas",
+      "UPDATE_SALE": "Editar Vendas",
+      "VIEW_SALES": "Visualizar Vendas",
+      "MANAGE_PRODUCTS": "Gerenciar Produtos",
+      "MANAGE_CLIENTS": "Gerenciar Clientes",
+      "MANAGE_SUPPLIERS": "Gerenciar Fornecedores",
+      "ACCOUNTS_RECEIVABLE": "Contas a Receber",
+      "ACCOUNTS_PAYABLE": "Contas a Pagar"
+    }
   }
 }

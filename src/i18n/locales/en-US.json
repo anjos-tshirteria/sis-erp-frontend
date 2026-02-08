@@ -76,5 +76,65 @@
   },
   "errors": {
     "unknown": "Unknown error"
+  },
+  "users": {
+    "sectionUsers": "Users",
+    "sectionRoles": "Roles",
+    "newUser": "New User",
+    "newRole": "New Role",
+    "editUser": "Edit User",
+    "editRole": "Edit Role",
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions",
+      "description": "Description",
+      "permissions": "Permissions",
+      "edit": "Edit",
+      "active": "Active",
+      "inactive": "Inactive",
+      "permissionCount": "{count} permissions",
+      "noUsers": "No users found",
+      "noRoles": "No roles found"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "User name",
+      "username": "Username",
+      "usernamePlaceholder": "username",
+      "email": "Email",
+      "emailPlaceholder": "email{'@'}example.com",
+      "password": "Password",
+      "passwordPlaceholder": "******",
+      "role": "Role",
+      "selectRole": "Select a role",
+      "activeUser": "Active User",
+      "roleName": "Role Name",
+      "roleNamePlaceholder": "E.g.: Seller, Manager",
+      "roleDescription": "Description",
+      "roleDescriptionPlaceholder": "Role description...",
+      "permissions": "Permissions",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "createUser": "Create User",
+      "createRole": "Create Role",
+      "saving": "Saving..."
+    },
+    "permissions": {
+      "MANAGE_USERS": "Manage Users",
+      "VIEW_REPORTS": "View Reports",
+      "CREATE_SALE": "Create Sales",
+      "UPDATE_SALE": "Edit Sales",
+      "VIEW_SALES": "View Sales",
+      "MANAGE_PRODUCTS": "Manage Products",
+      "MANAGE_CLIENTS": "Manage Clients",
+      "MANAGE_SUPPLIERS": "Manage Suppliers",
+      "ACCOUNTS_RECEIVABLE": "Accounts Receivable",
+      "ACCOUNTS_PAYABLE": "Accounts Payable"
+    }
   }
 }

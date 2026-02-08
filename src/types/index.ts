@@ -41,6 +41,32 @@ export interface User {
   updatedAt: string
 }
 
+export interface CreateUserPayload {
+  name: string
+  username: string
+  email: string | null
+  password: string
+  active: boolean
+  roleId: string
+}
+
+export interface UpdateUserPayload {
+  name: string
+  username: string
+  email: string | null
+  password?: string
+  active: boolean
+  roleId: string
+}
+
+export interface CreateRolePayload {
+  name: string
+  description: string
+  permissions: Permission[]
+}
+
+export type UpdateRolePayload = CreateRolePayload
+
 export interface LoginRequest {
   username: string
   password: string
