@@ -10,3 +10,69 @@ export interface PaginatedResponse<T> {
   per_page: number
   last_page: number
 }
+
+export type Permission =
+  | 'MANAGE_USERS'
+  | 'VIEW_REPORTS'
+  | 'CREATE_SALE'
+  | 'UPDATE_SALE'
+  | 'VIEW_SALES'
+  | 'MANAGE_PRODUCTS'
+  | 'MANAGE_CLIENTS'
+  | 'MANAGE_SUPPLIERS'
+  | 'ACCOUNTS_RECEIVABLE'
+  | 'ACCOUNTS_PAYABLE'
+
+export interface Role {
+  id: string
+  name: string
+  description: string
+  permissions: Permission[]
+}
+
+export interface User {
+  id: string
+  name: string
+  username: string
+  email: string | null
+  active: boolean
+  role: Role
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreateUserPayload {
+  name: string
+  username: string
+  email: string | null
+  password: string
+  active: boolean
+  roleId: string
+}
+
+export interface UpdateUserPayload {
+  name: string
+  username: string
+  email: string | null
+  password?: string
+  active: boolean
+  roleId: string
+}
+
+export interface CreateRolePayload {
+  name: string
+  description: string
+  permissions: Permission[]
+}
+
+export type UpdateRolePayload = CreateRolePayload
+
+export interface LoginRequest {
+  username: string
+  password: string
+}
+
+export interface LoginResponse {
+  accessToken: string
+  refreshToken: string
+}

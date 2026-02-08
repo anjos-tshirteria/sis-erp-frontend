@@ -1,0 +1,140 @@
+{
+  "app": {
+    "title": "ERP System"
+  },
+  "auth": {
+    "title": "ERP System",
+    "subtitle": "Enter your credentials to access the system",
+    "username": "Username",
+    "usernamePlaceholder": "Your username",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "invalidCredentials": "Invalid username or password"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "sales": "Sales",
+    "products": "Products",
+    "clients": "Clients",
+    "suppliers": "Suppliers",
+    "labels": "Labels",
+    "accountsReceivable": "Accounts Receivable",
+    "accountsPayable": "Accounts Payable",
+    "reports": "Reports",
+    "users": "Users",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "views": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "System overview"
+    },
+    "sales": {
+      "title": "Sales",
+      "description": "Manage system sales"
+    },
+    "products": {
+      "title": "Products",
+      "description": "Manage the product catalog"
+    },
+    "clients": {
+      "title": "Clients",
+      "description": "Manage clients"
+    },
+    "suppliers": {
+      "title": "Suppliers",
+      "description": "Manage suppliers"
+    },
+    "labels": {
+      "title": "Labels",
+      "description": "Manage product labels"
+    },
+    "accountsReceivable": {
+      "title": "Accounts Receivable",
+      "description": "Manage accounts receivable"
+    },
+    "accountsPayable": {
+      "title": "Accounts Payable",
+      "description": "Manage accounts payable"
+    },
+    "reports": {
+      "title": "Reports",
+      "description": "View system reports"
+    },
+    "users": {
+      "title": "Users & Permissions",
+      "description": "Manage users and access roles"
+    }
+  },
+  "forbidden": {
+    "title": "Access Denied",
+    "message": "You do not have permission to access this page.",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "errors": {
+    "unknown": "Unknown error"
+  },
+  "users": {
+    "sectionUsers": "Users",
+    "sectionRoles": "Roles",
+    "newUser": "New User",
+    "newRole": "New Role",
+    "editUser": "Edit User",
+    "editRole": "Edit Role",
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions",
+      "description": "Description",
+      "permissions": "Permissions",
+      "edit": "Edit",
+      "active": "Active",
+      "inactive": "Inactive",
+      "permissionCount": "{count} permissions",
+      "noUsers": "No users found",
+      "noRoles": "No roles found"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "User name",
+      "username": "Username",
+      "usernamePlaceholder": "username",
+      "email": "Email",
+      "emailPlaceholder": "email{'@'}example.com",
+      "password": "Password",
+      "passwordPlaceholder": "******",
+      "role": "Role",
+      "selectRole": "Select a role",
+      "activeUser": "Active User",
+      "roleName": "Role Name",
+      "roleNamePlaceholder": "E.g.: Seller, Manager",
+      "roleDescription": "Description",
+      "roleDescriptionPlaceholder": "Role description...",
+      "permissions": "Permissions",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "createUser": "Create User",
+      "createRole": "Create Role",
+      "saving": "Saving..."
+    },
+    "permissions": {
+      "MANAGE_USERS": "Manage Users",
+      "VIEW_REPORTS": "View Reports",
+      "CREATE_SALE": "Create Sales",
+      "UPDATE_SALE": "Edit Sales",
+      "VIEW_SALES": "View Sales",
+      "MANAGE_PRODUCTS": "Manage Products",
+      "MANAGE_CLIENTS": "Manage Clients",
+      "MANAGE_SUPPLIERS": "Manage Suppliers",
+      "ACCOUNTS_RECEIVABLE": "Accounts Receivable",
+      "ACCOUNTS_PAYABLE": "Accounts Payable"
+    }
+  }
+}

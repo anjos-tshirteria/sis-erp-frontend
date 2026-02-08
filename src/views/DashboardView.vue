@@ -6,8 +6,8 @@ import { LayoutDashboard } from 'lucide-vue-next'
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
       <LayoutDashboard class="w-6 h-6" />
-      Dashboard
+      {{ $t('views.dashboard.title') }}
     </h1>
-    <p class="mt-1 text-gray-500">Visão geral do sistema</p>
+    <p class="mt-1 text-gray-500">{{ $t('views.dashboard.description') }}</p>
   </div>
 </template>

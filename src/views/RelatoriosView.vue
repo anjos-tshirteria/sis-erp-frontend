@@ -6,8 +6,8 @@ import { BarChart3 } from 'lucide-vue-next'
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
       <BarChart3 class="w-6 h-6" />
-      Relatórios
+      {{ $t('views.reports.title') }}
     </h1>
-    <p class="mt-1 text-gray-500">Visualize relatórios do sistema</p>
+    <p class="mt-1 text-gray-500">{{ $t('views.reports.description') }}</p>
   </div>
 </template>

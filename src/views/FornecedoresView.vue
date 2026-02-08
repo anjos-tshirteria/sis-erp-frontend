@@ -6,8 +6,8 @@ import { Truck } from 'lucide-vue-next'
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
       <Truck class="w-6 h-6" />
-      Fornecedores
+      {{ $t('views.suppliers.title') }}
     </h1>
-    <p class="mt-1 text-gray-500">Gerencie os fornecedores</p>
+    <p class="mt-1 text-gray-500">{{ $t('views.suppliers.description') }}</p>
   </div>
 </template>
