@@ -67,6 +67,27 @@ export interface CreateRolePayload {
 
 export type UpdateRolePayload = CreateRolePayload
 
+export interface Supplier {
+  id: string
+  name: string
+  phone: string | null
+  notes: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreateSupplierPayload {
+  name: string
+  phone?: string
+  notes?: string
+}
+
+export interface UpdateSupplierPayload {
+  name?: string
+  phone?: string | null
+  notes?: string | null
+}
+
 export interface LoginRequest {
   username: string
   password: string

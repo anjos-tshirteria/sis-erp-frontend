@@ -53,6 +53,12 @@ const routes: RouteRecordRaw[] = [
         meta: { permission: 'MANAGE_SUPPLIERS' },
       },
       {
+        path: 'fornecedores/:id',
+        name: 'fornecedor-detalhes',
+        component: () => import('@/views/FornecedorDetalhesView.vue'),
+        meta: { permission: 'MANAGE_SUPPLIERS' },
+      },
+      {
         path: 'etiquetas',
         name: 'etiquetas',
         component: () => import('@/views/EtiquetasView.vue'),

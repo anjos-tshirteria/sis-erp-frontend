@@ -77,6 +77,62 @@
   "errors": {
     "unknown": "Erro desconhecido"
   },
+  "suppliers": {
+    "newSupplier": "Novo Fornecedor",
+    "editSupplier": "Editar Fornecedor",
+    "deleteSupplier": "Excluir Fornecedor",
+    "table": {
+      "name": "Nome",
+      "phone": "Telefone",
+      "notes": "Observações",
+      "actions": "Ações",
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "noSuppliers": "Nenhum fornecedor encontrado"
+    },
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Nome do fornecedor",
+      "phone": "Telefone",
+      "phonePlaceholder": "(11) 3333-4444",
+      "notes": "Observações",
+      "notesPlaceholder": "Informações adicionais sobre o fornecedor...",
+      "cancel": "Cancelar",
+      "save": "Salvar Alterações",
+      "create": "Criar Fornecedor",
+      "saving": "Salvando..."
+    },
+    "delete": {
+      "confirmTitle": "Excluir Fornecedor",
+      "confirmMessage": "Tem certeza que deseja excluir o fornecedor {name}? Esta ação não pode ser desfeita.",
+      "deleting": "Excluindo...",
+      "cancel": "Cancelar",
+      "confirm": "Excluir"
+    },
+    "details": {
+      "details": "Detalhes do fornecedor",
+      "info": "Informações",
+      "back": "Voltar",
+      "notFound": "Fornecedor não encontrado",
+      "backToSuppliers": "Voltar para fornecedores",
+      "products": "Últimos Produtos",
+      "noProducts": "Nenhum produto cadastrado",
+      "productCode": "Código",
+      "productName": "Nome",
+      "productCost": "Custo",
+      "productPrice": "Valor Venda",
+      "productStock": "Estoque"
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Próximo",
+      "page": "Página {page} de {lastPage}"
+    },
+    "search": {
+      "placeholder": "Buscar por nome..."
+    }
+  },
   "users": {
     "sectionUsers": "Usuários",
     "sectionRoles": "Papéis (Roles)",
