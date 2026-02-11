@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import { RouterView } from 'vue-router'
-import { useAppStore } from '@/stores/app'
-import AppSidebar from '@/components/AppSidebar.vue'
-
-const appStore = useAppStore()
-const sidebarOpen = computed(() => appStore.sidebarOpen)
-</script>
-
 <template>
   <div class="min-h-screen bg-gray-50">
     <AppSidebar />
@@ -19,3 +9,13 @@ const sidebarOpen = computed(() => appStore.sidebarOpen)
     </main>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { RouterView } from 'vue-router'
+import { useAppStore } from '@/stores/app'
+import AppSidebar from '@/components/AppSidebar.vue'
+
+const appStore = useAppStore()
+const sidebarOpen = computed(() => appStore.sidebarOpen)
+</script>

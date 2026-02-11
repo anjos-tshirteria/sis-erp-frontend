@@ -1,3 +1,132 @@
+<template>
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold flex items-center gap-2">
+          <UserCircle class="w-6 h-6" />
+          {{ $t('views.users.title') }}
+        </h1>
+        <p class="mt-1 text-gray-500">{{ $t('views.users.description') }}</p>
+      </div>
+      <div class="flex gap-3">
+        <Button variant="outline" @click="openNewRole">
+          <Shield class="w-4 h-4 mr-2" />
+          {{ t('users.newRole') }}
+        </Button>
+        <Button @click="openNewUser">
+          <Plus class="w-4 h-4 mr-2" />
+          {{ t('users.newUser') }}
+        </Button>
+      </div>
+    </div>
+
+    <Card>
+      <CardHeader>
+        <CardTitle>{{ t('users.sectionUsers') }}</CardTitle>
+      </CardHeader>
+      <CardContent class="p-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>{{ t('users.table.name') }}</TableHead>
+              <TableHead>{{ t('users.table.username') }}</TableHead>
+              <TableHead>{{ t('users.table.email') }}</TableHead>
+              <TableHead>{{ t('users.table.role') }}</TableHead>
+              <TableHead>{{ t('users.table.status') }}</TableHead>
+              <TableHead>{{ t('users.table.actions') }}</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow v-if="!loadingUsers && users.length === 0">
+              <TableCell :colspan="7" class="text-center text-gray-500">
+                {{ t('users.table.noUsers') }}
+              </TableCell>
+            </TableRow>
+            <TableRow v-for="user in users" :key="user.id">
+              <TableCell class="font-medium">{{ user.name }}</TableCell>
+              <TableCell class="font-mono text-sm">{{ user.username }}</TableCell>
+              <TableCell>{{ user.email || '-' }}</TableCell>
+              <TableCell>
+                <Badge variant="secondary">{{
+                  typeof user.role === 'object' ? user.role?.name : user.role
+                }}</Badge>
+              </TableCell>
+              <TableCell>
+                <Badge :variant="user.active ? 'default' : 'outline'">
+                  {{ user.active ? t('users.table.active') : t('users.table.inactive') }}
+                </Badge>
+              </TableCell>
+              <TableCell>
+                <button
+                  class="text-sm font-medium text-blue-600 hover:text-blue-800"
+                  @click="openEditUser(user)"
+                >
+                  {{ t('users.table.edit') }}
+                </button>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+
+    <Card>
+      <CardHeader>
+        <CardTitle>{{ t('users.sectionRoles') }}</CardTitle>
+      </CardHeader>
+      <CardContent class="p-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>{{ t('users.table.name') }}</TableHead>
+              <TableHead>{{ t('users.table.description') }}</TableHead>
+              <TableHead>{{ t('users.table.permissions') }}</TableHead>
+              <TableHead>{{ t('users.table.actions') }}</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow v-if="!loadingRoles && roles.length === 0">
+              <TableCell :colspan="5" class="text-center text-gray-500">
+                {{ t('users.table.noRoles') }}
+              </TableCell>
+            </TableRow>
+            <TableRow v-for="role in roles" :key="role.id">
+              <TableCell class="font-medium">{{ role.name }}</TableCell>
+              <TableCell>{{ role.description }}</TableCell>
+              <TableCell class="text-sm text-gray-600">
+                {{ t('users.table.permissionCount', { count: role.permissions.length }) }}
+              </TableCell>
+              <TableCell>
+                <button
+                  class="text-sm font-medium text-blue-600 hover:text-blue-800"
+                  @click="openEditRole(role)"
+                >
+                  {{ t('users.table.edit') }}
+                </button>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+
+    <UserDialog
+      v-model:open="showUserDialog"
+      :user="editingUser"
+      :roles="roles"
+      :saving="savingUser"
+      @save="handleSaveUser"
+    />
+
+    <RoleDialog
+      v-model:open="showRoleDialog"
+      :role="editingRole"
+      :saving="savingRole"
+      @save="handleSaveRole"
+    />
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -114,136 +243,3 @@ onMounted(() => {
   fetchRoles()
 })
 </script>
-
-<template>
-  <div class="space-y-6">
-    <div class="flex items-center justify-between">
-      <div>
-        <h1 class="text-2xl font-bold flex items-center gap-2">
-          <UserCircle class="w-6 h-6" />
-          {{ $t('views.users.title') }}
-        </h1>
-        <p class="mt-1 text-gray-500">{{ $t('views.users.description') }}</p>
-      </div>
-      <div class="flex gap-3">
-        <Button variant="outline" @click="openNewRole">
-          <Shield class="w-4 h-4 mr-2" />
-          {{ t('users.newRole') }}
-        </Button>
-        <Button @click="openNewUser">
-          <Plus class="w-4 h-4 mr-2" />
-          {{ t('users.newUser') }}
-        </Button>
-      </div>
-    </div>
-
-    <Card>
-      <CardHeader>
-        <CardTitle>{{ t('users.sectionUsers') }}</CardTitle>
-      </CardHeader>
-      <CardContent class="p-0">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>{{ t('users.table.id') }}</TableHead>
-              <TableHead>{{ t('users.table.name') }}</TableHead>
-              <TableHead>{{ t('users.table.username') }}</TableHead>
-              <TableHead>{{ t('users.table.email') }}</TableHead>
-              <TableHead>{{ t('users.table.role') }}</TableHead>
-              <TableHead>{{ t('users.table.status') }}</TableHead>
-              <TableHead>{{ t('users.table.actions') }}</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow v-if="!loadingUsers && users.length === 0">
-              <TableCell :colspan="7" class="text-center text-gray-500">
-                {{ t('users.table.noUsers') }}
-              </TableCell>
-            </TableRow>
-            <TableRow v-for="user in users" :key="user.id">
-              <TableCell class="text-gray-500">#{{ user.id }}</TableCell>
-              <TableCell class="font-medium">{{ user.name }}</TableCell>
-              <TableCell class="font-mono text-sm">{{ user.username }}</TableCell>
-              <TableCell>{{ user.email || '-' }}</TableCell>
-              <TableCell>
-                <Badge variant="secondary">{{
-                  typeof user.role === 'object' ? user.role?.name : user.role
-                }}</Badge>
-              </TableCell>
-              <TableCell>
-                <Badge :variant="user.active ? 'default' : 'outline'">
-                  {{ user.active ? t('users.table.active') : t('users.table.inactive') }}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <button
-                  class="text-sm font-medium text-blue-600 hover:text-blue-800"
-                  @click="openEditUser(user)"
-                >
-                  {{ t('users.table.edit') }}
-                </button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
-
-    <Card>
-      <CardHeader>
-        <CardTitle>{{ t('users.sectionRoles') }}</CardTitle>
-      </CardHeader>
-      <CardContent class="p-0">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>{{ t('users.table.id') }}</TableHead>
-              <TableHead>{{ t('users.table.name') }}</TableHead>
-              <TableHead>{{ t('users.table.description') }}</TableHead>
-              <TableHead>{{ t('users.table.permissions') }}</TableHead>
-              <TableHead>{{ t('users.table.actions') }}</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow v-if="!loadingRoles && roles.length === 0">
-              <TableCell :colspan="5" class="text-center text-gray-500">
-                {{ t('users.table.noRoles') }}
-              </TableCell>
-            </TableRow>
-            <TableRow v-for="role in roles" :key="role.id">
-              <TableCell class="text-gray-500">#{{ role.id }}</TableCell>
-              <TableCell class="font-medium">{{ role.name }}</TableCell>
-              <TableCell>{{ role.description }}</TableCell>
-              <TableCell class="text-sm text-gray-600">
-                {{ t('users.table.permissionCount', { count: role.permissions.length }) }}
-              </TableCell>
-              <TableCell>
-                <button
-                  class="text-sm font-medium text-blue-600 hover:text-blue-800"
-                  @click="openEditRole(role)"
-                >
-                  {{ t('users.table.edit') }}
-                </button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
-
-    <UserDialog
-      v-model:open="showUserDialog"
-      :user="editingUser"
-      :roles="roles"
-      :saving="savingUser"
-      @save="handleSaveUser"
-    />
-
-    <RoleDialog
-      v-model:open="showRoleDialog"
-      :role="editingRole"
-      :saving="savingRole"
-      @save="handleSaveRole"
-    />
-  </div>
-</template>

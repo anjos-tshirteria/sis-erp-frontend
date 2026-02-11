@@ -1,100 +1,3 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { useAppStore } from '@/stores/app'
-import { useAuthStore } from '@/stores/auth'
-import type { Permission } from '@/types'
-import {
-  LayoutDashboard,
-  ShoppingCart,
-  Package,
-  Users,
-  Truck,
-  Tags,
-  ArrowDownCircle,
-  ArrowUpCircle,
-  BarChart3,
-  UserCircle,
-  X,
-  Menu,
-  LogOut,
-  Globe,
-} from 'lucide-vue-next'
-
-const { t, locale } = useI18n()
-const route = useRoute()
-const appStore = useAppStore()
-const authStore = useAuthStore()
-
-const allMenuItems: Array<{
-  path: string
-  icon: typeof LayoutDashboard
-  labelKey: string
-  permission?: Permission
-}> = [
-  { path: '/', icon: LayoutDashboard, labelKey: 'sidebar.dashboard' },
-  { path: '/vendas', icon: ShoppingCart, labelKey: 'sidebar.sales', permission: 'VIEW_SALES' },
-  {
-    path: '/produtos',
-    icon: Package,
-    labelKey: 'sidebar.products',
-    permission: 'MANAGE_PRODUCTS',
-  },
-  { path: '/clientes', icon: Users, labelKey: 'sidebar.clients', permission: 'MANAGE_CLIENTS' },
-  {
-    path: '/fornecedores',
-    icon: Truck,
-    labelKey: 'sidebar.suppliers',
-    permission: 'MANAGE_SUPPLIERS',
-  },
-  { path: '/etiquetas', icon: Tags, labelKey: 'sidebar.labels', permission: 'MANAGE_PRODUCTS' },
-  {
-    path: '/contas-receber',
-    icon: ArrowDownCircle,
-    labelKey: 'sidebar.accountsReceivable',
-    permission: 'ACCOUNTS_RECEIVABLE',
-  },
-  {
-    path: '/contas-pagar',
-    icon: ArrowUpCircle,
-    labelKey: 'sidebar.accountsPayable',
-    permission: 'ACCOUNTS_PAYABLE',
-  },
-  {
-    path: '/relatorios',
-    icon: BarChart3,
-    labelKey: 'sidebar.reports',
-    permission: 'VIEW_REPORTS',
-  },
-  {
-    path: '/usuarios',
-    icon: UserCircle,
-    labelKey: 'sidebar.users',
-    permission: 'MANAGE_USERS',
-  },
-]
-
-const menuItems = computed(() =>
-  allMenuItems.filter((item) => !item.permission || authStore.hasPermission(item.permission)),
-)
-
-function isActive(path: string) {
-  if (path === '/') return route.path === '/'
-  return route.path.startsWith(path)
-}
-
-const sidebarOpen = computed(() => appStore.sidebarOpen)
-
-const localeLabel = computed(() => (locale.value === 'pt-BR' ? 'PT' : 'EN'))
-
-function toggleLocale() {
-  const next = locale.value === 'pt-BR' ? 'en-US' : 'pt-BR'
-  locale.value = next
-  localStorage.setItem('locale', next)
-}
-</script>
-
 <template>
   <aside
     :class="[
@@ -162,3 +65,100 @@ function toggleLocale() {
     </div>
   </aside>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useAppStore } from '@/stores/app'
+import { useAuthStore } from '@/stores/auth'
+import type { Permission } from '@/types'
+import {
+  LayoutDashboard,
+  ShoppingCart,
+  Package,
+  Users,
+  Truck,
+  Tags,
+  ArrowDownCircle,
+  ArrowUpCircle,
+  BarChart3,
+  UserCircle,
+  X,
+  Menu,
+  LogOut,
+  Globe,
+} from 'lucide-vue-next'
+
+const { t, locale } = useI18n()
+const route = useRoute()
+const appStore = useAppStore()
+const authStore = useAuthStore()
+
+const allMenuItems: Array<{
+  path: string
+  icon: typeof LayoutDashboard
+  labelKey: string
+  permission?: Permission
+}> = [
+  { path: '/', icon: LayoutDashboard, labelKey: 'sidebar.dashboard' },
+  { path: '/sales', icon: ShoppingCart, labelKey: 'sidebar.sales', permission: 'VIEW_SALES' },
+  {
+    path: '/products',
+    icon: Package,
+    labelKey: 'sidebar.products',
+    permission: 'MANAGE_PRODUCTS',
+  },
+  { path: '/clients', icon: Users, labelKey: 'sidebar.clients', permission: 'MANAGE_CLIENTS' },
+  {
+    path: '/suppliers',
+    icon: Truck,
+    labelKey: 'sidebar.suppliers',
+    permission: 'MANAGE_SUPPLIERS',
+  },
+  { path: '/labels', icon: Tags, labelKey: 'sidebar.labels', permission: 'MANAGE_PRODUCTS' },
+  {
+    path: '/accounts-receivable',
+    icon: ArrowDownCircle,
+    labelKey: 'sidebar.accountsReceivable',
+    permission: 'ACCOUNTS_RECEIVABLE',
+  },
+  {
+    path: '/accounts-payable',
+    icon: ArrowUpCircle,
+    labelKey: 'sidebar.accountsPayable',
+    permission: 'ACCOUNTS_PAYABLE',
+  },
+  {
+    path: '/reports',
+    icon: BarChart3,
+    labelKey: 'sidebar.reports',
+    permission: 'VIEW_REPORTS',
+  },
+  {
+    path: '/users',
+    icon: UserCircle,
+    labelKey: 'sidebar.users',
+    permission: 'MANAGE_USERS',
+  },
+]
+
+const menuItems = computed(() =>
+  allMenuItems.filter((item) => !item.permission || authStore.hasPermission(item.permission)),
+)
+
+function isActive(path: string) {
+  if (path === '/') return route.path === '/'
+  return route.path.startsWith(path)
+}
+
+const sidebarOpen = computed(() => appStore.sidebarOpen)
+
+const localeLabel = computed(() => (locale.value === 'pt-BR' ? 'PT' : 'EN'))
+
+function toggleLocale() {
+  const next = locale.value === 'pt-BR' ? 'en-US' : 'pt-BR'
+  locale.value = next
+  localStorage.setItem('locale', next)
+}
+</script>

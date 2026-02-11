@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { CreditCard } from 'lucide-vue-next'
-</script>
-
 <template>
   <div>
     <h1 class="text-2xl font-bold flex items-center gap-2">
@@ -11,3 +7,7 @@ import { CreditCard } from 'lucide-vue-next'
     <p class="mt-1 text-gray-500">{{ $t('views.accountsPayable.description') }}</p>
   </div>
 </template>
+
+<script setup lang="ts">
+import { CreditCard } from 'lucide-vue-next'
+</script>

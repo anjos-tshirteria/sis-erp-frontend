@@ -77,6 +77,62 @@
   "errors": {
     "unknown": "Unknown error"
   },
+  "suppliers": {
+    "newSupplier": "New Supplier",
+    "editSupplier": "Edit Supplier",
+    "deleteSupplier": "Delete Supplier",
+    "table": {
+      "name": "Name",
+      "phone": "Phone",
+      "notes": "Notes",
+      "actions": "Actions",
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "noSuppliers": "No suppliers found"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Supplier name",
+      "phone": "Phone",
+      "phonePlaceholder": "(555) 123-4567",
+      "notes": "Notes",
+      "notesPlaceholder": "Additional information about the supplier...",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "create": "Create Supplier",
+      "saving": "Saving..."
+    },
+    "delete": {
+      "confirmTitle": "Delete Supplier",
+      "confirmMessage": "Are you sure you want to delete the supplier {name}? This action cannot be undone.",
+      "deleting": "Deleting...",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+    "details": {
+      "details": "Supplier details",
+      "info": "Information",
+      "back": "Back",
+      "notFound": "Supplier not found",
+      "backToSuppliers": "Back to suppliers",
+      "products": "Latest Products",
+      "noProducts": "No products registered",
+      "productCode": "Code",
+      "productName": "Name",
+      "productCost": "Cost",
+      "productPrice": "Sale Price",
+      "productStock": "Stock"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page} of {lastPage}"
+    },
+    "search": {
+      "placeholder": "Search by name..."
+    }
+  },
   "users": {
     "sectionUsers": "Users",
     "sectionRoles": "Roles",

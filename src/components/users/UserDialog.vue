@@ -1,114 +1,3 @@
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { ChevronDown, Check } from 'lucide-vue-next'
-import type { User, Role, CreateUserPayload, UpdateUserPayload } from '@/types'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
-
-const props = defineProps<{
-  open: boolean
-  user: User | null
-  roles: Role[]
-  saving: boolean
-}>()
-
-const emit = defineEmits<{
-  'update:open': [value: boolean]
-  save: [payload: CreateUserPayload | UpdateUserPayload]
-}>()
-
-const { t } = useI18n()
-
-const name = ref('')
-const username = ref('')
-const email = ref('')
-const password = ref('')
-const active = ref(true)
-const roleId = ref('')
-const roleDropdownOpen = ref(false)
-
-const selectedRoleName = computed(() => {
-  const role = props.roles.find((r) => String(r.id) === roleId.value)
-  return role?.name || ''
-})
-
-function resolveRoleId(user: User): string {
-  const role = user.role as Role | string
-  if (role && typeof role === 'object' && 'id' in role) {
-    return String(role.id)
-  }
-  // API may return role as a string (name) — match by name
-  if (typeof role === 'string') {
-    const matched = props.roles.find((r) => r.name === role)
-    if (matched) return String(matched.id)
-  }
-  return ''
-}
-
-watch(
-  () => props.open,
-  (isOpen) => {
-    if (isOpen && props.user) {
-      name.value = props.user.name
-      username.value = props.user.username
-      email.value = props.user.email || ''
-      password.value = ''
-      active.value = props.user.active
-      roleId.value = resolveRoleId(props.user)
-    } else if (isOpen) {
-      name.value = ''
-      username.value = ''
-      email.value = ''
-      password.value = ''
-      active.value = true
-      roleId.value = props.roles[0] ? String(props.roles[0].id) : ''
-    }
-    roleDropdownOpen.value = false
-  },
-)
-
-function selectRole(id: string) {
-  roleId.value = id
-  roleDropdownOpen.value = false
-}
-
-function handleSave() {
-  if (props.user) {
-    const payload: UpdateUserPayload = {
-      name: name.value,
-      username: username.value,
-      email: email.value || null,
-      active: active.value,
-      roleId: roleId.value,
-    }
-    if (password.value) {
-      payload.password = password.value
-    }
-    emit('save', payload)
-  } else {
-    const payload: CreateUserPayload = {
-      name: name.value,
-      username: username.value,
-      email: email.value || null,
-      password: password.value,
-      active: active.value,
-      roleId: roleId.value,
-    }
-    emit('save', payload)
-  }
-}
-</script>
-
 <template>
   <Dialog :open="open" @update:open="emit('update:open', $event)">
     <DialogContent class="sm:max-w-md">
@@ -233,3 +122,114 @@ function handleSave() {
     </DialogContent>
   </Dialog>
 </template>
+
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { ChevronDown, Check } from 'lucide-vue-next'
+import type { User, Role, CreateUserPayload, UpdateUserPayload } from '@/types'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
+
+const props = defineProps<{
+  open: boolean
+  user: User | null
+  roles: Role[]
+  saving: boolean
+}>()
+
+const emit = defineEmits<{
+  'update:open': [value: boolean]
+  save: [payload: CreateUserPayload | UpdateUserPayload]
+}>()
+
+const { t } = useI18n()
+
+const name = ref('')
+const username = ref('')
+const email = ref('')
+const password = ref('')
+const active = ref(true)
+const roleId = ref('')
+const roleDropdownOpen = ref(false)
+
+const selectedRoleName = computed(() => {
+  const role = props.roles.find((r) => String(r.id) === roleId.value)
+  return role?.name || ''
+})
+
+function resolveRoleId(user: User): string {
+  const role = user.role as Role | string
+  if (role && typeof role === 'object' && 'id' in role) {
+    return String(role.id)
+  }
+  // API may return role as a string (name) — match by name
+  if (typeof role === 'string') {
+    const matched = props.roles.find((r) => r.name === role)
+    if (matched) return String(matched.id)
+  }
+  return ''
+}
+
+watch(
+  () => props.open,
+  (isOpen) => {
+    if (isOpen && props.user) {
+      name.value = props.user.name
+      username.value = props.user.username
+      email.value = props.user.email || ''
+      password.value = ''
+      active.value = props.user.active
+      roleId.value = resolveRoleId(props.user)
+    } else if (isOpen) {
+      name.value = ''
+      username.value = ''
+      email.value = ''
+      password.value = ''
+      active.value = true
+      roleId.value = props.roles[0] ? String(props.roles[0].id) : ''
+    }
+    roleDropdownOpen.value = false
+  },
+)
+
+function selectRole(id: string) {
+  roleId.value = id
+  roleDropdownOpen.value = false
+}
+
+function handleSave() {
+  if (props.user) {
+    const payload: UpdateUserPayload = {
+      name: name.value,
+      username: username.value,
+      email: email.value || null,
+      active: active.value,
+      roleId: roleId.value,
+    }
+    if (password.value) {
+      payload.password = password.value
+    }
+    emit('save', payload)
+  } else {
+    const payload: CreateUserPayload = {
+      name: name.value,
+      username: username.value,
+      email: email.value || null,
+      password: password.value,
+      active: active.value,
+      roleId: roleId.value,
+    }
+    emit('save', payload)
+  }
+}
+</script>

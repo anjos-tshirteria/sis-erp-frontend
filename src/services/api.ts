@@ -39,7 +39,12 @@ function processQueue(error: unknown, token: string | null) {
 
 api.interceptors.response.use(
   (response) => {
-    if (response.data && typeof response.data === 'object' && Array.isArray(response.data.data)) {
+    if (
+      response.data &&
+      typeof response.data === 'object' &&
+      Array.isArray(response.data.data) &&
+      !('page' in response.data)
+    ) {
       response.data = response.data.data
     }
     return response
