@@ -28,7 +28,6 @@
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{{ t('users.table.id') }}</TableHead>
               <TableHead>{{ t('users.table.name') }}</TableHead>
               <TableHead>{{ t('users.table.username') }}</TableHead>
               <TableHead>{{ t('users.table.email') }}</TableHead>
@@ -44,7 +43,6 @@
               </TableCell>
             </TableRow>
             <TableRow v-for="user in users" :key="user.id">
-              <TableCell class="text-gray-500">#{{ user.id }}</TableCell>
               <TableCell class="font-medium">{{ user.name }}</TableCell>
               <TableCell class="font-mono text-sm">{{ user.username }}</TableCell>
               <TableCell>{{ user.email || '-' }}</TableCell>
@@ -80,7 +78,6 @@
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{{ t('users.table.id') }}</TableHead>
               <TableHead>{{ t('users.table.name') }}</TableHead>
               <TableHead>{{ t('users.table.description') }}</TableHead>
               <TableHead>{{ t('users.table.permissions') }}</TableHead>
@@ -94,7 +91,6 @@
               </TableCell>
             </TableRow>
             <TableRow v-for="role in roles" :key="role.id">
-              <TableCell class="text-gray-500">#{{ role.id }}</TableCell>
               <TableCell class="font-medium">{{ role.name }}</TableCell>
               <TableCell>{{ role.description }}</TableCell>
               <TableCell class="text-sm text-gray-600">
