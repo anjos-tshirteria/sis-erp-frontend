@@ -1,3 +1,71 @@
+<template>
+  <Dialog :open="open" @update:open="emit('update:open', $event)">
+    <DialogContent class="sm:max-w-lg">
+      <DialogHeader>
+        <DialogTitle>{{ role ? t('users.editRole') : t('users.newRole') }}</DialogTitle>
+        <DialogDescription class="sr-only">
+          {{ role ? t('users.editRole') : t('users.newRole') }}
+        </DialogDescription>
+      </DialogHeader>
+
+      <form class="space-y-4" @submit.prevent="handleSave">
+        <div class="space-y-2">
+          <Label for="role-name">{{ t('users.form.roleName') }}</Label>
+          <Input
+            id="role-name"
+            v-model="name"
+            :placeholder="t('users.form.roleNamePlaceholder')"
+            required
+          />
+        </div>
+
+        <div class="space-y-2">
+          <Label for="role-description">{{ t('users.form.roleDescription') }}</Label>
+          <Textarea
+            id="role-description"
+            v-model="description"
+            :placeholder="t('users.form.roleDescriptionPlaceholder')"
+            :rows="2"
+          />
+        </div>
+
+        <div class="space-y-3">
+          <Label>{{ t('users.form.permissions') }}</Label>
+          <div class="grid grid-cols-2 gap-3">
+            <div v-for="perm in ALL_PERMISSIONS" :key="perm" class="flex items-center gap-2">
+              <input
+                :id="`perm-${perm}`"
+                type="checkbox"
+                :checked="permissions.includes(perm)"
+                class="border-input h-4 w-4 shrink-0 rounded-[4px] border accent-primary"
+                @change="togglePermission(perm)"
+              />
+              <Label :for="`perm-${perm}`" class="cursor-pointer text-sm font-normal">
+                {{ t(`users.permissions.${perm}`) }}
+              </Label>
+            </div>
+          </div>
+        </div>
+
+        <DialogFooter>
+          <Button type="button" variant="outline" @click="emit('update:open', false)">
+            {{ t('users.form.cancel') }}
+          </Button>
+          <Button type="submit" :disabled="saving">
+            {{
+              saving
+                ? t('users.form.saving')
+                : role
+                  ? t('users.form.save')
+                  : t('users.form.createRole')
+            }}
+          </Button>
+        </DialogFooter>
+      </form>
+    </DialogContent>
+  </Dialog>
+</template>
+
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -77,71 +145,3 @@ function handleSave() {
   })
 }
 </script>
-
-<template>
-  <Dialog :open="open" @update:open="emit('update:open', $event)">
-    <DialogContent class="sm:max-w-lg">
-      <DialogHeader>
-        <DialogTitle>{{ role ? t('users.editRole') : t('users.newRole') }}</DialogTitle>
-        <DialogDescription class="sr-only">
-          {{ role ? t('users.editRole') : t('users.newRole') }}
-        </DialogDescription>
-      </DialogHeader>
-
-      <form class="space-y-4" @submit.prevent="handleSave">
-        <div class="space-y-2">
-          <Label for="role-name">{{ t('users.form.roleName') }}</Label>
-          <Input
-            id="role-name"
-            v-model="name"
-            :placeholder="t('users.form.roleNamePlaceholder')"
-            required
-          />
-        </div>
-
-        <div class="space-y-2">
-          <Label for="role-description">{{ t('users.form.roleDescription') }}</Label>
-          <Textarea
-            id="role-description"
-            v-model="description"
-            :placeholder="t('users.form.roleDescriptionPlaceholder')"
-            :rows="2"
-          />
-        </div>
-
-        <div class="space-y-3">
-          <Label>{{ t('users.form.permissions') }}</Label>
-          <div class="grid grid-cols-2 gap-3">
-            <div v-for="perm in ALL_PERMISSIONS" :key="perm" class="flex items-center gap-2">
-              <input
-                :id="`perm-${perm}`"
-                type="checkbox"
-                :checked="permissions.includes(perm)"
-                class="border-input h-4 w-4 shrink-0 rounded-[4px] border accent-primary"
-                @change="togglePermission(perm)"
-              />
-              <Label :for="`perm-${perm}`" class="cursor-pointer text-sm font-normal">
-                {{ t(`users.permissions.${perm}`) }}
-              </Label>
-            </div>
-          </div>
-        </div>
-
-        <DialogFooter>
-          <Button type="button" variant="outline" @click="emit('update:open', false)">
-            {{ t('users.form.cancel') }}
-          </Button>
-          <Button type="submit" :disabled="saving">
-            {{
-              saving
-                ? t('users.form.saving')
-                : role
-                  ? t('users.form.save')
-                  : t('users.form.createRole')
-            }}
-          </Button>
-        </DialogFooter>
-      </form>
-    </DialogContent>
-  </Dialog>
-</template>

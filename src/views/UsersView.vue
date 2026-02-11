@@ -1,120 +1,3 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { UserCircle, Plus, Shield } from 'lucide-vue-next'
-import api from '@/services/api'
-import type {
-  User,
-  Role,
-  CreateUserPayload,
-  UpdateUserPayload,
-  CreateRolePayload,
-  UpdateRolePayload,
-} from '@/types'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import UserDialog from '@/components/users/UserDialog.vue'
-import RoleDialog from '@/components/users/RoleDialog.vue'
-
-const { t } = useI18n()
-
-const users = ref<User[]>([])
-const roles = ref<Role[]>([])
-const loadingUsers = ref(false)
-const loadingRoles = ref(false)
-
-const showUserDialog = ref(false)
-const showRoleDialog = ref(false)
-const editingUser = ref<User | null>(null)
-const editingRole = ref<Role | null>(null)
-const savingUser = ref(false)
-const savingRole = ref(false)
-
-async function fetchUsers() {
-  loadingUsers.value = true
-  try {
-    const response = await api.get<User[]>('/user')
-    users.value = response.data
-  } finally {
-    loadingUsers.value = false
-  }
-}
-
-async function fetchRoles() {
-  loadingRoles.value = true
-  try {
-    const response = await api.get<Role[]>('/role')
-    roles.value = response.data
-  } finally {
-    loadingRoles.value = false
-  }
-}
-
-function openNewUser() {
-  editingUser.value = null
-  showUserDialog.value = true
-}
-
-function openEditUser(user: User) {
-  editingUser.value = user
-  showUserDialog.value = true
-}
-
-function openNewRole() {
-  editingRole.value = null
-  showRoleDialog.value = true
-}
-
-function openEditRole(role: Role) {
-  editingRole.value = role
-  showRoleDialog.value = true
-}
-
-async function handleSaveUser(payload: CreateUserPayload | UpdateUserPayload) {
-  savingUser.value = true
-  try {
-    if (editingUser.value) {
-      await api.put(`/user/${editingUser.value.id}`, payload)
-    } else {
-      await api.post('/user', payload)
-    }
-    showUserDialog.value = false
-    await fetchUsers()
-  } finally {
-    savingUser.value = false
-  }
-}
-
-async function handleSaveRole(payload: CreateRolePayload | UpdateRolePayload) {
-  savingRole.value = true
-  try {
-    if (editingRole.value) {
-      await api.put(`/role/${editingRole.value.id}`, payload)
-    } else {
-      await api.post('/role', payload)
-    }
-    showRoleDialog.value = false
-    await fetchRoles()
-  } finally {
-    savingRole.value = false
-  }
-}
-
-onMounted(() => {
-  fetchUsers()
-  fetchRoles()
-})
-</script>
-
 <template>
   <div class="space-y-6">
     <div class="flex items-center justify-between">
@@ -247,3 +130,120 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { UserCircle, Plus, Shield } from 'lucide-vue-next'
+import api from '@/services/api'
+import type {
+  User,
+  Role,
+  CreateUserPayload,
+  UpdateUserPayload,
+  CreateRolePayload,
+  UpdateRolePayload,
+} from '@/types'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import UserDialog from '@/components/users/UserDialog.vue'
+import RoleDialog from '@/components/users/RoleDialog.vue'
+
+const { t } = useI18n()
+
+const users = ref<User[]>([])
+const roles = ref<Role[]>([])
+const loadingUsers = ref(false)
+const loadingRoles = ref(false)
+
+const showUserDialog = ref(false)
+const showRoleDialog = ref(false)
+const editingUser = ref<User | null>(null)
+const editingRole = ref<Role | null>(null)
+const savingUser = ref(false)
+const savingRole = ref(false)
+
+async function fetchUsers() {
+  loadingUsers.value = true
+  try {
+    const response = await api.get<User[]>('/user')
+    users.value = response.data
+  } finally {
+    loadingUsers.value = false
+  }
+}
+
+async function fetchRoles() {
+  loadingRoles.value = true
+  try {
+    const response = await api.get<Role[]>('/role')
+    roles.value = response.data
+  } finally {
+    loadingRoles.value = false
+  }
+}
+
+function openNewUser() {
+  editingUser.value = null
+  showUserDialog.value = true
+}
+
+function openEditUser(user: User) {
+  editingUser.value = user
+  showUserDialog.value = true
+}
+
+function openNewRole() {
+  editingRole.value = null
+  showRoleDialog.value = true
+}
+
+function openEditRole(role: Role) {
+  editingRole.value = role
+  showRoleDialog.value = true
+}
+
+async function handleSaveUser(payload: CreateUserPayload | UpdateUserPayload) {
+  savingUser.value = true
+  try {
+    if (editingUser.value) {
+      await api.put(`/user/${editingUser.value.id}`, payload)
+    } else {
+      await api.post('/user', payload)
+    }
+    showUserDialog.value = false
+    await fetchUsers()
+  } finally {
+    savingUser.value = false
+  }
+}
+
+async function handleSaveRole(payload: CreateRolePayload | UpdateRolePayload) {
+  savingRole.value = true
+  try {
+    if (editingRole.value) {
+      await api.put(`/role/${editingRole.value.id}`, payload)
+    } else {
+      await api.post('/role', payload)
+    }
+    showRoleDialog.value = false
+    await fetchRoles()
+  } finally {
+    savingRole.value = false
+  }
+}
+
+onMounted(() => {
+  fetchUsers()
+  fetchRoles()
+})
+</script>

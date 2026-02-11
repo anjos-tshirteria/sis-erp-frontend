@@ -1,3 +1,67 @@
+<template>
+  <Dialog :open="open" @update:open="emit('update:open', $event)">
+    <DialogContent class="sm:max-w-md">
+      <DialogHeader>
+        <DialogTitle>{{
+          supplier ? t('suppliers.editSupplier') : t('suppliers.newSupplier')
+        }}</DialogTitle>
+        <DialogDescription class="sr-only">
+          {{ supplier ? t('suppliers.editSupplier') : t('suppliers.newSupplier') }}
+        </DialogDescription>
+      </DialogHeader>
+
+      <form class="space-y-4" @submit.prevent="handleSave">
+        <div class="space-y-2">
+          <Label for="supplier-name">{{ t('suppliers.form.name') }}</Label>
+          <Input
+            id="supplier-name"
+            v-model="name"
+            :placeholder="t('suppliers.form.namePlaceholder')"
+            required
+          />
+        </div>
+
+        <div class="space-y-2">
+          <Label for="supplier-phone">{{ t('suppliers.form.phone') }}</Label>
+          <Input
+            id="supplier-phone"
+            :model-value="phone"
+            :placeholder="t('suppliers.form.phonePlaceholder')"
+            inputmode="tel"
+            :maxlength="15"
+            @input="onPhoneInput"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <Label for="supplier-notes">{{ t('suppliers.form.notes') }}</Label>
+          <Textarea
+            id="supplier-notes"
+            v-model="notes"
+            :placeholder="t('suppliers.form.notesPlaceholder')"
+            :rows="3"
+          />
+        </div>
+
+        <DialogFooter>
+          <Button type="button" variant="outline" @click="emit('update:open', false)">
+            {{ t('suppliers.form.cancel') }}
+          </Button>
+          <Button type="submit" :disabled="saving">
+            {{
+              saving
+                ? t('suppliers.form.saving')
+                : supplier
+                  ? t('suppliers.form.save')
+                  : t('suppliers.form.create')
+            }}
+          </Button>
+        </DialogFooter>
+      </form>
+    </DialogContent>
+  </Dialog>
+</template>
+
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -71,67 +135,3 @@ function handleSave() {
   }
 }
 </script>
-
-<template>
-  <Dialog :open="open" @update:open="emit('update:open', $event)">
-    <DialogContent class="sm:max-w-md">
-      <DialogHeader>
-        <DialogTitle>{{
-          supplier ? t('suppliers.editSupplier') : t('suppliers.newSupplier')
-        }}</DialogTitle>
-        <DialogDescription class="sr-only">
-          {{ supplier ? t('suppliers.editSupplier') : t('suppliers.newSupplier') }}
-        </DialogDescription>
-      </DialogHeader>
-
-      <form class="space-y-4" @submit.prevent="handleSave">
-        <div class="space-y-2">
-          <Label for="supplier-name">{{ t('suppliers.form.name') }}</Label>
-          <Input
-            id="supplier-name"
-            v-model="name"
-            :placeholder="t('suppliers.form.namePlaceholder')"
-            required
-          />
-        </div>
-
-        <div class="space-y-2">
-          <Label for="supplier-phone">{{ t('suppliers.form.phone') }}</Label>
-          <Input
-            id="supplier-phone"
-            :model-value="phone"
-            :placeholder="t('suppliers.form.phonePlaceholder')"
-            inputmode="tel"
-            :maxlength="15"
-            @input="onPhoneInput"
-          />
-        </div>
-
-        <div class="space-y-2">
-          <Label for="supplier-notes">{{ t('suppliers.form.notes') }}</Label>
-          <Textarea
-            id="supplier-notes"
-            v-model="notes"
-            :placeholder="t('suppliers.form.notesPlaceholder')"
-            :rows="3"
-          />
-        </div>
-
-        <DialogFooter>
-          <Button type="button" variant="outline" @click="emit('update:open', false)">
-            {{ t('suppliers.form.cancel') }}
-          </Button>
-          <Button type="submit" :disabled="saving">
-            {{
-              saving
-                ? t('suppliers.form.saving')
-                : supplier
-                  ? t('suppliers.form.save')
-                  : t('suppliers.form.create')
-            }}
-          </Button>
-        </DialogFooter>
-      </form>
-    </DialogContent>
-  </Dialog>
-</template>

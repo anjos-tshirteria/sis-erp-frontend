@@ -135,7 +135,7 @@
   },
   "users": {
     "sectionUsers": "Usuários",
-    "sectionRoles": "Papéis (Roles)",
+    "sectionRoles": "Papéis",
     "newUser": "Novo Usuário",
     "newRole": "Novo Papel",
     "editUser": "Editar Usuário",
