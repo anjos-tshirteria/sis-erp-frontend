@@ -199,7 +199,7 @@ function openDeleteSupplier(supplier: Supplier) {
 }
 
 function viewSupplier(supplier: Supplier) {
-  router.push({ name: 'fornecedor-detalhes', params: { id: supplier.id } })
+  router.push({ name: 'supplier-details', params: { id: supplier.id } })
 }
 
 async function handleSaveSupplier(payload: CreateSupplierPayload | UpdateSupplierPayload) {

@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <template v-if="supplier">
       <div class="flex items-center gap-4">
-        <RouterLink :to="{ name: 'fornecedores' }">
+        <RouterLink :to="{ name: 'suppliers' }">
           <Button variant="outline" size="sm">
             <ArrowLeft class="w-4 h-4 mr-2" />
             {{ t('suppliers.details.back') }}
@@ -76,7 +76,7 @@
       <div class="text-center py-12">
         <h2 class="text-2xl font-semibold">{{ t('suppliers.details.notFound') }}</h2>
         <RouterLink
-          :to="{ name: 'fornecedores' }"
+          :to="{ name: 'suppliers' }"
           class="text-blue-600 hover:text-blue-800 mt-4 inline-block"
         >
           {{ t('suppliers.details.backToSuppliers') }}
@@ -145,7 +145,7 @@ async function handleDelete() {
   try {
     await api.delete(`/supplier/${route.params.id}`)
     showDeleteDialog.value = false
-    router.push({ name: 'fornecedores' })
+    router.push({ name: 'suppliers' })
   } finally {
     deleting.value = false
   }
